@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  rails-blueprint:
+    build:
+      context: .
+    image: mamazary/rails-blueprint
+    env_file:
+      - docker-compose-rails.env
+    ports:
+      - 3000:3000
+
+  postgres-server:
+    image: postgres:11
+    restart: always
+    env_file:
+      - docker-compose-postgres.env
