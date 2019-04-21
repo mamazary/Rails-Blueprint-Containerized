@@ -1,5 +1,8 @@
 version: '3'
 
+volumes:
+  postgres-rails:
+
 services:
   rails-blueprint:
     build:
@@ -16,3 +19,5 @@ services:
     restart: always
     env_file:
       - ./docker/docker-compose-postgres.env
+    volumes:
+      - postgres-rails:/var/lib/postgresql/data
