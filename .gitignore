@@ -4,8 +4,9 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-# Ignore bundler config.
+# Ignore bundler config and vendor bundle for Environment Normalization.
 /.bundle
+/vendor/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -35,3 +36,7 @@ Gemfile.lock
 yarn-debug.log*
 .yarn-integrity
 .env
+
+# Ignore uploaded files in development
+/storage/*
+!/storage/.keep
