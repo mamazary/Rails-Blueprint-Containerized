@@ -1,0 +1,77 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: rails-deployment
+spec:
+  replicas: 1
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: rails-app
+      tier: app
+  template:
+    metadata:
+      name: rails
+      labels:
+        app: rails-app
+        tier: app
+    spec:
+      containers:
+      - name: rails
+        image: docker.io/mamazary/rails-blueprint:latest
+        args: ["rails", "server", "-b", "0.0.0.0"]
+        env:
+        - name: APP_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: rails-config
+              key: APP_NAME
+        - name: APP_DESCRIPTION
+          valueFrom:
+            configMapKeyRef:
+              name: rails-config
+              key: APP_DESCRIPTION
+        - name: APP_URL
+          valueFrom:
+            configMapKeyRef:
+              name: rails-config
+              key: APP_URL
+        - name: APP_IMAGE
+          valueFrom:
+            configMapKeyRef:
+              name: rails-config
+              key: APP_IMAGE
+        - name: TWITTER
+          valueFrom:
+            configMapKeyRef:
+              name: rails-config
+              key: TWITTER
+        - name: DEFAULT_EMAIL
+          valueFrom:
+            configMapKeyRef:
+              name: rails-config
+              key: DEFAULT_EMAIL
+        - name: DATABASE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: rails-config
+              key: DATABASE_NAME
+        - name: DATABASE_HOST
+          value: "postgres"
+        - name: DATABASE_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: rails-config
+              key: DATABASE_USERNAME
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: rails-config
+              key: DATABASE_PASSWORD
+        ports:
+          - containerPort: 3000

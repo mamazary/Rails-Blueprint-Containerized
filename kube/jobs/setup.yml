@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: setup
+spec:
+  template:
+    metadata:
+      name: setup
+    spec:
+      containers:
+      - name: setup
+        image: docker.io/mamazary/rails-blueprint:latest
+        args: ["rails", "db:migrate"]
+        env:
+        - name: DATABASE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: rails-config
+              key: DATABASE_NAME
+        - name: DATABASE_HOST
+          value: "postgres"
+        - name: DATABASE_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: rails-config
+              key: DATABASE_USERNAME
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: rails-config
+              key: DATABASE_PASSWORD
+      restartPolicy: Never

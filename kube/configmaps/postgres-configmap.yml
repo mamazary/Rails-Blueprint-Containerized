@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: default
+data:
+  POSTGRES_DB: rails-blueprint
+  POSTGRES_USER: agent
+  POSTGRES_PASSWORD: gNcb7Ce4xvs8K8xr

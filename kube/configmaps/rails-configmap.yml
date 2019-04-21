@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rails-config
+  namespace: default
+data:
+  APP_NAME: Rails Blueprint
+  APP_DESCRIPTION: My description
+  APP_URL: https://aripratama.com
+  APP_IMAGE: /public/logo.png
+  TWITTER: mamazary
+  DEFAULT_EMAIL: mail@aripratama.com
+
+  # Database
+  DATABASE_NAME: rails-blueprint
+  DATABASE_USERNAME: agent
+  DATABASE_PASSWORD: gNcb7Ce4xvs8K8xr
