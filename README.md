@@ -26,10 +26,18 @@ You can check the detail about this app in original Github repository
 3. Execute the migrate process on running container by typing this on another terminal window `docker exec $container-name-or-hash rails db:migrate` 
 notes: `$container-name-or-hash` *is depend on your machine, on me is rails-blueprint_rails-blueprint_1 , but please check with* `docker container ls` *to make sure*
 
+## Deployment
+For deploy this app, you need to build a new image ( with copying all artifact files into docker image  ) by using build command
+`docker build -t your-image-name:version -f ./docker/dockerfile`
+or using stack deploy on swarm
+`docker stack deploy -c docker-compose-build.yml`
+
 ## Environment variables
 This app use some environment variable, please check it on `docker/*env`
 
+## Notes
+This repository is far from perfect, so feel free to add or change
 
 ## Contributions
-
 Feel free to implement anything, submit pull requests, create issues, discuss ideas or spread the word.
+
