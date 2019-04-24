@@ -58,14 +58,14 @@ kubectl create -f kube/volumes/postgres_volume.yml
 kubectl create -f kube/services/rails_service.yml
 kubectl create -f kube/services/postgres_service.yml
 ```
-  5. Create jobs from file for rails migration
-```
-kubectl create -f kube/jobs/setup.yml
-```
-  6. Create deployments from file for rails and postgres
+  5. Create deployments from file for rails and postgres
 ```
 kubectl create -f kube/deployments/rails_deploy.yml
 kubectl create -f kube/deployments/postgres_deploy.yml
+```
+  6. Create jobs from file for rails migration
+```
+kubectl create -f kube/jobs/setup.yml
 ```
   7. Create ingress from file
 ```
@@ -77,6 +77,7 @@ kubectl create -f kube/ingress/ingress.yml
 or
 127.0.0.1 your-of-host-choice
 ```
+  8. After all of the step succefully applied and no failure, open the url in the browser
 
 ## Docker Deployment
 For deploy this app, you need to build a new image ( with copying all artifact files into docker image  ) by using build command
